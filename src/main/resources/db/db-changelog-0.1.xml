@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create_roles_table" author="bushemi2001@gmail.com">
+        <createTable tableName="roles">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="role_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_locales_table" author="bushemi2001@gmail.com">
+        <createTable tableName="locales">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="short_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="full_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_users_table" author="bushemi2001@gmail.com">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="login" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_blocked" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk-users_roles_id"
+                             references="roles(id)"/>
+            </column>
+            <column name="locale_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk-users_locales_id"
+                             references="locales(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_subjects_table" author="bushemi2001@gmail.com">
+        <createTable tableName="subjects">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="subject_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_tests_table" author="bushemi2001@gmail.com">
+        <createTable tableName="tests">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="subject" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk-tests_subjects_id"
+                             references="subjects(id)"/>
+            </column>
+            <column name="test_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="difficulty" type="int" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="seconds_to_complete" type="int" defaultValueNumeric="60">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_questions_table" author="bushemi2001@gmail.com">
+        <createTable tableName="questions">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="main_text" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="test_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk-questions_tests_id"
+                             references="tests(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_options_table" author="bushemi2001@gmail.com">
+        <createTable tableName="options">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="main_text" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="question_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk-options_questions_id"
+                             references="questions(id)"/>
+            </column>
+            <column name="is_correct" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_passed_tests_table" author="bushemi2001@gmail.com">
+        <createTable tableName="passed_tests">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="test_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_pt_tests_id"
+                             references="tests(id)"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk-passed-tests_users_id"
+                             references="users(id)"/>
+            </column>
+            <column name="correct_answers" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="spent_time" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="tag-0.1" author="bushemi2001@gmail.com">
+        <tagDatabase tag="0.1"/>
+    </changeSet>
+
+</databaseChangeLog>
