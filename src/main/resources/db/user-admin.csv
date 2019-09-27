@@ -1,0 +1,3 @@
+id,login,password,is_blocked,role_id,locale_id
+1,admin,admin,false,2,1
+

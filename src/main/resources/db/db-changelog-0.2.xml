@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="loadDictionary-roles" author="db@user">
+        <loadData
+                encoding="UTF-8"
+                file="src/main/resources/db/roles.csv"
+                quotchar="A String"
+                separator=","
+                tableName="roles">
+        </loadData>
+    </changeSet>
+
+    <changeSet id="loadDictionary-locales" author="db@user">
+        <loadData
+                encoding="UTF-8"
+                file="src/main/resources/db/locales.csv"
+                quotchar="A String"
+                separator=","
+                tableName="locales">
+        </loadData>
+    </changeSet>
+
+    <changeSet id="addAdmin-users" author="db@user">
+        <loadData
+                encoding="UTF-8"
+                file="src/main/resources/db/user-admin.csv"
+                quotchar="A String"
+                separator=","
+                tableName="users">
+            <column name="is_blocked" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="tag-0.2" author="bushemi2001@gmail.com">
+        <tagDatabase tag="0.2"/>
+    </changeSet>
+
+</databaseChangeLog>
