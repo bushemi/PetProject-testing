@@ -32,11 +32,7 @@
 <div>
     <h1 id="mainTitle">Авторизация</h1>
 </div>
-<div>
-
-
-</div>
-
+<br/>
 <form action="/users" method="post">
     <div class="form-group">
         <label for="newUser">Новый пользователь?</label>
@@ -53,13 +49,13 @@
     <div class="form-group">
         <label for="registrationLogin">Логин</label>
         <input name="login" type="text" class="form-control ${loginClass}" id="registrationLogin"
-               placeholder="Введите логин">
+               placeholder="Введите логин"/>
         <label class="warning">${loginMessage}</label>
     </div>
     <div class="form-group">
         <label for="registrationPassword">Пароль</label>
         <input name="password" type="password" class="form-control " id="registrationPassword"
-               placeholder="Пароль">
+               placeholder="Пароль"/>
         <label class="warning">${passwordMessage}</label>
     </div>
     <button id="submitButton" type="submit" class="btn btn-primary">Войти</button>
