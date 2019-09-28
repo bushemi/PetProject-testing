@@ -1,6 +1,6 @@
 package com.bushemi.exceptions;
 
-public class DbConnectionException extends RuntimeException {
+public class DbConnectionException extends DbException {
     public DbConnectionException() {
     }
 
