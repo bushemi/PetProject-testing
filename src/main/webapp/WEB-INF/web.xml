@@ -12,6 +12,7 @@
         <url-pattern>*</url-pattern>
     </filter-mapping>
 
+
     <servlet>
         <servlet-name>AuthenticationServlet</servlet-name>
         <servlet-class>com.bushemi.web.servlets.AuthenticationServlet</servlet-class>
@@ -38,6 +39,25 @@
         <servlet-name>TestsServlet</servlet-name>
         <url-pattern>/tests</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TestingServlet</servlet-name>
+        <servlet-class>com.bushemi.web.servlets.TestingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestingServlet</servlet-name>
+        <url-pattern>/testToGo/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>QuestionServlet</servlet-name>
+        <servlet-class>com.bushemi.web.servlets.QuestionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QuestionServlet</servlet-name>
+        <url-pattern>/questions</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>indexPage</servlet-name>
@@ -73,6 +93,24 @@
     <servlet-mapping>
         <servlet-name>allTests</servlet-name>
         <url-pattern>/allTests</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>testing</servlet-name>
+        <jsp-file>/testing.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>testing</servlet-name>
+        <url-pattern>/testing</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>testInProcess</servlet-name>
+        <jsp-file>/testInProcess.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>testInProcess</servlet-name>
+        <url-pattern>/question</url-pattern>
     </servlet-mapping>
 
 </web-app>

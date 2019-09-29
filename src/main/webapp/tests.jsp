@@ -78,13 +78,18 @@
       function toMainMenu() {
         window.location.href = "navigation";
       }
+      
+      function startTest() {
+        window.location.href = "/testToGo/" + selectedTest;
+      }
+    
     </script>
 </head>
 
 <body>
 <div>
     <button onclick="toMainMenu()">В главное меню</button>
-    <button id="startTestButton" disabled>Начать тест</button>
+    <button id="startTestButton" disabled onclick="startTest()">Начать тест</button>
     <c:if test="${not empty sessionScope.role}">
         <c:if test="${sessionScope.role == 'admin'}">
             <button id="deleteTestButton" disabled>Удалить тест</button>
