@@ -2,6 +2,7 @@ package com.bushemi.dao.implementations;
 
 import com.bushemi.dao.entity.User;
 import com.bushemi.dao.interfaces.UserDao;
+import com.bushemi.exceptions.DbException;
 import com.bushemi.service.DbConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,8 +55,8 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     public boolean isUserExist(String login) {
         LOG.info("isUserExist for login = {}", login);
         Connection connection = dbConnector.getConnection();
-        try ( PreparedStatement preparedStatement =
-                      connection.prepareStatement("select * from users where login = ?;")){
+        try (PreparedStatement preparedStatement =
+                     connection.prepareStatement("select * from users where login = ?;")) {
             preparedStatement.setString(1, login);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -84,7 +85,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     protected void putParametersForUpdatingEntityIntoPreparedStatement(User user, PreparedStatement statement) throws SQLException {
         putParametersForSavingNewEntityIntoPreparedStatement(user, statement);
 
-        statement.setLong(6, user.getId());
+        statement.setLong(7, user.getId());
     }
 
     @Override
@@ -104,12 +105,12 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     String getQueryForFindingEntityById() {
-        return "SELECT id, login, is_blocked, role_id, locale_id FROM users WHERE id = ?;";
+        return "SELECT id, login, is_blocked, role_id, locale_id, password FROM users WHERE id = ?;";
     }
 
     @Override
     String getQueryForFindingAllEntities() {
-        return "SELECT id, login, is_blocked, role_id, locale_id FROM users;";
+        return "SELECT id, login, is_blocked, role_id, locale_id, password FROM users;";
     }
 
     @Override
@@ -120,6 +121,30 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         user.setBlocked(resultSet.getBoolean(3));
         user.setRoleId(resultSet.getLong(4));
         user.setLocaleId(resultSet.getLong(5));
+        user.setPassword(resultSet.getString(6));
         return user;
+    }
+
+    @Override
+    public User findByLogin(String login) {
+        Connection connection = dbConnector.getConnection();
+        try (PreparedStatement preparedStatement =
+                     connection.prepareStatement("SELECT id, login, is_blocked, role_id, locale_id, password FROM users WHERE login = ?;")) {
+
+            preparedStatement.setString(1, login);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            boolean next = resultSet.next();
+            if (next) {
+                return getEntityFromResultSet(resultSet);
+            }
+            return null;
+        } catch (SQLException e) {
+            LOG.error("Can't find a entity by login = {}. {}", login, e.getMessage());
+            throw new DbException(e);
+        } finally {
+            dbConnector.releaseConnection(connection);
+        }
+
     }
 }
