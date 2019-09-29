@@ -8,17 +8,21 @@ import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.Properties;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
+
+import static java.util.Objects.isNull;
 
 public class DbConnectionPoolServiceImpl implements DbConnectionService {
     private static final Logger LOG = LoggerFactory.getLogger("DbConnectionService");
     private static final int DEFAULT_CONNECTIONS_QUANTITY = 10;
+    private static final int TIMEOUT_TO_OBTAIN_CONNECTION = 10;
     private String url;
     private String username;
     private String password;
-    private LinkedList<Connection> freeConnections = new LinkedList<>();
-    private LinkedList<Connection> busyConnections = new LinkedList<>();
+    private LinkedBlockingQueue<Connection> freeConnections = new LinkedBlockingQueue<>();
+    private LinkedBlockingQueue<Connection> busyConnections = new LinkedBlockingQueue<>();
     private static DbConnectionPoolServiceImpl instance = new DbConnectionPoolServiceImpl();
 
     private DbConnectionPoolServiceImpl() {
@@ -67,25 +71,27 @@ public class DbConnectionPoolServiceImpl implements DbConnectionService {
         return obtainConnection();
     }
 
-    private synchronized Connection obtainConnection() {
-        while (freeConnections.isEmpty()) {
-            try {
-                wait(100);
-            } catch (InterruptedException e) {
-                LOG.error("current thread was interrupted. {}", e.getCause());
-                throw new DbConnectionException(e);
-            }
+    private Connection obtainConnection() {
+        Connection connection;
+        try {
+            connection = freeConnections.poll(TIMEOUT_TO_OBTAIN_CONNECTION, TimeUnit.SECONDS);
+        } catch (Exception e) {
+            LOG.error("{}", e);
+            throw new DbConnectionException(e);
         }
-        Connection connection = freeConnections.pop();
-        busyConnections.addFirst(connection);
+        if (isNull(connection)) {
+            LOG.error("{} seconds is not enough to obtain connection", TIMEOUT_TO_OBTAIN_CONNECTION);
+            throw new DbConnectionException();
+        }
+        busyConnections.add(connection);
         LOG.info("Obtained connection by thread = {}", Thread.currentThread().getName());
         return connection;
     }
 
     @Override
-    public synchronized void releaseConnection(Connection connection) {
+    public void releaseConnection(Connection connection) {
         if (busyConnections.remove(connection)) {
-            freeConnections.addFirst(connection);
+            freeConnections.add(connection);
         }
         LOG.info("released connection by thread = {}", Thread.currentThread().getName());
     }
