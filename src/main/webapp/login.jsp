@@ -38,11 +38,11 @@
         <label for="newUser">Новый пользователь?</label>
         <input name="isNewUser" id="newUser" type="checkbox" onchange="onNewUserChange(this)"/>
     </div>
-    <c:if test="${not empty sessionScope.login}">
+    <c:if test="${not empty sessionScope.loginError}">
         <c:set var="loginMessage" value="${sessionScope.loginError}"/>
         <c:set var="loginClass" value="redBorder"/>
     </c:if>
-    <c:if test="${not empty sessionScope.password}">
+    <c:if test="${not empty sessionScope.passwordError}">
         <c:set var="passwordMessage" value="${sessionScope.passwordError}"/>
         <c:set var="passwordClass" value="redBorder"/>
     </c:if>
