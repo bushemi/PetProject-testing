@@ -7,6 +7,7 @@ import com.bushemi.dao.implementations.SubjectDaoImpl;
 import com.bushemi.dao.implementations.TestDaoImpl;
 import com.bushemi.dao.interfaces.SubjectDao;
 import com.bushemi.dao.interfaces.TestDao;
+import com.bushemi.exceptions.DbException;
 import com.bushemi.model.TestForSessionDto;
 import com.bushemi.model.TestForTestsPage;
 import com.bushemi.service.interfaces.DbConnectionService;
@@ -46,7 +47,12 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public TestForSessionDto findTestById(Long id) {
+        try {
+            Test byId = testDao.findById(id);
+            return testConverter.fromTestToTestForSessionDto(byId);
+        } catch (Exception e) {
+            throw new DbException(e);
+        }
 
-        return null;
     }
 }
