@@ -45,12 +45,12 @@ public class SubjectDaoImpl extends AbstractDao<Subject> implements SubjectDao {
 
     @Override
     String getQueryForFindingEntityById() {
-        return "SELECT id, subject_name FROM users WHERE id = ?;";
+        return "SELECT id, subject_name FROM subjects WHERE id = ?;";
     }
 
     @Override
     String getQueryForFindingAllEntities() {
-        return "SELECT id, subject_name FROM users";
+        return "SELECT id, subject_name FROM subjects";
     }
 
     @Override

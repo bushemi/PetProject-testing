@@ -48,12 +48,12 @@ public class TestDaoImpl extends AbstractDao<Test> implements TestDao {
 
     @Override
     String getQueryForFindingEntityById() {
-        return "SELECT id, subject, test_name, difficulty, seconds_to_complete FROM users WHERE id = ?;";
+        return "SELECT id, subject, test_name, difficulty, seconds_to_complete FROM tests WHERE id = ?;";
     }
 
     @Override
     String getQueryForFindingAllEntities() {
-        return "SELECT id, subject, test_name, difficulty, seconds_to_complete FROM users";
+        return "SELECT id, subject, test_name, difficulty, seconds_to_complete FROM tests";
     }
 
     @Override
