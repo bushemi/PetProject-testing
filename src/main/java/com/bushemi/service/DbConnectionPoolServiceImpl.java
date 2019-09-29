@@ -18,10 +18,15 @@ public class DbConnectionPoolServiceImpl implements DbConnectionService {
     private String password;
     private LinkedList<Connection> freeConnections = new LinkedList<>();
     private LinkedList<Connection> busyConnections = new LinkedList<>();
+    private static DbConnectionPoolServiceImpl instance = new DbConnectionPoolServiceImpl();
 
-    public DbConnectionPoolServiceImpl() {
+    private DbConnectionPoolServiceImpl() {
         initParametersForConnection();
         initializeConnectionPool();
+    }
+
+    public static DbConnectionPoolServiceImpl getInstance() {
+        return instance;
     }
 
     private void initParametersForConnection() {
