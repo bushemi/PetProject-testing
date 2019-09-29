@@ -41,10 +41,16 @@
     <c:if test="${not empty sessionScope.loginError}">
         <c:set var="loginMessage" value="${sessionScope.loginError}"/>
         <c:set var="loginClass" value="redBorder"/>
+        <%
+            session.setAttribute("loginError", null);
+        %>
     </c:if>
     <c:if test="${not empty sessionScope.passwordError}">
         <c:set var="passwordMessage" value="${sessionScope.passwordError}"/>
         <c:set var="passwordClass" value="redBorder"/>
+        <%
+            session.setAttribute("passwordError", null);
+        %>
     </c:if>
     <div class="form-group">
         <label for="registrationLogin">Логин</label>
@@ -54,7 +60,7 @@
     </div>
     <div class="form-group">
         <label for="registrationPassword">Пароль</label>
-        <input name="password" type="password" class="form-control " id="registrationPassword"
+        <input name="password" type="password" class="form-control ${passwordClass}" id="registrationPassword"
                placeholder="Пароль"/>
         <label class="warning">${passwordMessage}</label>
     </div>
