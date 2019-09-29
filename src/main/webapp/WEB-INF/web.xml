@@ -31,6 +31,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>TestsServlet</servlet-name>
+        <servlet-class>com.bushemi.web.servlets.TestsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestsServlet</servlet-name>
+        <url-pattern>/tests</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>indexPage</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
     </servlet>
@@ -57,5 +66,13 @@
         <url-pattern>/navigation</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>allTests</servlet-name>
+        <jsp-file>/tests.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allTests</servlet-name>
+        <url-pattern>/allTests</url-pattern>
+    </servlet-mapping>
 
 </web-app>
