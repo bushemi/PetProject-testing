@@ -1,4 +1,4 @@
-package com.bushemi.service;
+package com.bushemi.service.implementations;
 
 import com.bushemi.converters.UserConverter;
 import com.bushemi.dao.entity.User;
@@ -7,6 +7,8 @@ import com.bushemi.dao.interfaces.UserDao;
 import com.bushemi.exceptions.WrongPasswordException;
 import com.bushemi.model.UserCreatingDto;
 import com.bushemi.model.UserForSessionDto;
+import com.bushemi.service.interfaces.DbConnectionService;
+import com.bushemi.service.interfaces.SecurityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

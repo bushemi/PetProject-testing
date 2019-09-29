@@ -1,5 +1,6 @@
-package com.bushemi.service;
+package com.bushemi.service.implementations;
 
+import com.bushemi.service.interfaces.DbConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

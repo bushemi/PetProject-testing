@@ -1,4 +1,4 @@
-package com.bushemi.service;
+package com.bushemi.service.interfaces;
 
 import java.sql.Connection;
 
