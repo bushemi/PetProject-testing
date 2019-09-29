@@ -1,7 +1,7 @@
 package com.bushemi.dao.implementations;
 
 import com.bushemi.dao.interfaces.CrudOperationsInterface;
-import com.bushemi.service.DbConnectionService;
+import com.bushemi.service.interfaces.DbConnectionService;
 import org.slf4j.Logger;
 
 import java.sql.Connection;

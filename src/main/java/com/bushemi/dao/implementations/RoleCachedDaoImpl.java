@@ -2,7 +2,7 @@ package com.bushemi.dao.implementations;
 
 import com.bushemi.dao.entity.dictionaries.Role;
 import com.bushemi.dao.interfaces.RoleDao;
-import com.bushemi.service.DbConnectionService;
+import com.bushemi.service.interfaces.DbConnectionService;
 
 import java.util.HashMap;
 import java.util.List;

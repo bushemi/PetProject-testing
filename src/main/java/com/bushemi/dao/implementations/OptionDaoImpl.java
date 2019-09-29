@@ -2,7 +2,7 @@ package com.bushemi.dao.implementations;
 
 import com.bushemi.dao.entity.Option;
 import com.bushemi.dao.interfaces.OptionDao;
-import com.bushemi.service.DbConnectionService;
+import com.bushemi.service.interfaces.DbConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

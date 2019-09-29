@@ -3,7 +3,7 @@ package com.bushemi.dao.implementations;
 import com.bushemi.dao.entity.Question;
 import com.bushemi.dao.interfaces.QuestionDao;
 import com.bushemi.exceptions.DbException;
-import com.bushemi.service.DbConnectionService;
+import com.bushemi.service.interfaces.DbConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
