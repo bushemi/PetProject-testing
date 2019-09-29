@@ -3,6 +3,23 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
     http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0" metadata-complete="false">
 
+    <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>com.bushemi.web.filters.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>AuthenticationServlet</servlet-name>
+        <servlet-class>com.bushemi.web.servlets.AuthenticationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AuthenticationServlet</servlet-name>
+        <url-pattern>/authentication</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>indexPage</servlet-name>
@@ -21,5 +38,15 @@
         <servlet-name>login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>navigation</servlet-name>
+        <jsp-file>/navigation.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>navigation</servlet-name>
+        <url-pattern>/navigation</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
