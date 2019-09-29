@@ -63,7 +63,7 @@ public class TestDaoImpl extends AbstractDao<Test> implements TestDao {
         test.setSubjectId(resultSet.getLong(2));
         test.setTestName(resultSet.getString(3));
         test.setDifficulty(resultSet.getInt(4));
-        test.setSecondsToComplete(resultSet.getInt(4));
+        test.setSecondsToComplete(resultSet.getInt(5));
 
         return test;
     }
