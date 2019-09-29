@@ -19,12 +19,14 @@ public class LoginFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpSession session = httpRequest.getSession(true);
         String textFromRequest = textFromRequest(httpRequest);
-        session.setAttribute("requestBody", textFromRequest);
-
+        if (!textFromRequest.isEmpty()) {
+            session.setAttribute("requestBody", textFromRequest);
+        }
         String url = httpRequest.getRequestURL().toString();
         LOG.info("url = {}. Session id = {}", url, session.getId());
         if (url.endsWith("users") && !textFromRequest.contains("isNewUser=true")) {
             httpResponse.sendRedirect("/authentication");
+            return;
         }
         chain.doFilter(request, response);
     }
@@ -45,6 +47,6 @@ public class LoginFilter implements Filter {
             reader.lines().forEach(builder::append);
         }
         LOG.info("result of textFromRequest method = {}", builder);
-        return builder.toString();
+        return builder.toString().trim();
     }
 }
