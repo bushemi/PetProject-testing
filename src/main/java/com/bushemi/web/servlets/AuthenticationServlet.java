@@ -2,9 +2,9 @@ package com.bushemi.web.servlets;
 
 import com.bushemi.model.UserCreatingDto;
 import com.bushemi.model.UserForSessionDto;
-import com.bushemi.service.SecurityService;
-import com.bushemi.service.SecurityServiceImpl;
-import com.bushemi.service.UserParserService;
+import com.bushemi.service.interfaces.SecurityService;
+import com.bushemi.service.implementations.SecurityServiceImpl;
+import com.bushemi.service.implementations.UserParserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +27,7 @@ public class AuthenticationServlet extends HttpServlet {
         HttpSession session = req.getSession();
         LOG.info("try to log in from session with id = {}", session.getId());
         Object textFromRequest = session.getAttribute("textFromRequest");
-        session.setAttribute("textFromRequest", null);
+        session.setAttribute("requestBody", null);
         if (nonNull(textFromRequest)) {
             UserCreatingDto userCreatingDto = userParserService.fromString(textFromRequest.toString());
 

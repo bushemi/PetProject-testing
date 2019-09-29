@@ -18,18 +18,15 @@ public class LoginFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpSession session = httpRequest.getSession(true);
+        String textFromRequest = textFromRequest(httpRequest);
+        session.setAttribute("requestBody", textFromRequest);
+
         String url = httpRequest.getRequestURL().toString();
         LOG.info("url = {}. Session id = {}", url, session.getId());
-        if (url.endsWith("users")) {
-            String textFromRequest = textFromRequest(httpRequest);
-            if (!textFromRequest.contains("isNewUser=true")) {
-
-                session.setAttribute("textFromRequest", textFromRequest);
-                httpResponse.sendRedirect("/authentication");
-            }
+        if (url.endsWith("users") && !textFromRequest.contains("isNewUser=true")) {
+            httpResponse.sendRedirect("/authentication");
         }
         chain.doFilter(request, response);
-
     }
 
     @Override
