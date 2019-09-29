@@ -48,6 +48,29 @@ public class PassedTestDaoImpl extends AbstractDao<PassedTest> implements Passed
     }
 
     @Override
+    public PassedTest findByUserIdAndTestId(Long userId, Long testId) {
+        Connection connection = dbConnector.getConnection();
+        try (PreparedStatement preparedStatement =
+                     connection.prepareStatement("SELECT id, test_id, user_id, correct_answers, spent_time FROM passed_tests WHERE user_id = ? and test_id = ?;")) {
+
+            preparedStatement.setLong(1, userId);
+            preparedStatement.setLong(2, testId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            boolean next = resultSet.next();
+            if (next) {
+                return getEntityFromResultSet(resultSet);
+            }
+            return null;
+        } catch (SQLException e) {
+            LOG.error("Can't find a entity by userId = {} and testId = {}. {}", userId, testId, e.getMessage());
+            throw new DbException(e);
+        } finally {
+            dbConnector.releaseConnection(connection);
+        }
+    }
+
+    @Override
     String getQueryForDeletingById() {
         return "DELETE FROM passed_tests WHERE id = ?;";
     }

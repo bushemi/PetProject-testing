@@ -8,4 +8,6 @@ public interface PassedTestDao extends CrudOperationsInterface<PassedTest> {
 
     List<PassedTest> findAllByUserId(Long userId);
 
+    PassedTest findByUserIdAndTestId(Long userId, Long testId);
+
 }
