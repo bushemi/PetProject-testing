@@ -1,4 +1,4 @@
-package com.bushemi.service;
+package com.bushemi.service.interfaces;
 
 import com.bushemi.model.UserCreatingDto;
 import com.bushemi.model.UserForSessionDto;
