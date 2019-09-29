@@ -2,8 +2,8 @@ package com.bushemi.web.servlets;
 
 import com.bushemi.model.UserCreatingDto;
 import com.bushemi.model.UserForSessionDto;
-import com.bushemi.service.UserService;
-import com.bushemi.service.UserServiceImpl;
+import com.bushemi.service.interfaces.UserService;
+import com.bushemi.service.implementations.UserServiceImpl;
 import com.bushemi.service.implementations.UserParserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

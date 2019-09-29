@@ -9,7 +9,7 @@ import com.bushemi.dao.implementations.RoleCachedDaoImpl;
 import com.bushemi.dao.interfaces.RoleDao;
 import com.bushemi.model.UserCreatingDto;
 import com.bushemi.model.UserForSessionDto;
-import com.bushemi.service.DbConnectionPoolServiceImpl;
+import com.bushemi.service.implementations.DbConnectionPoolServiceImpl;
 
 public class UserConverter {
     private LocaleDao localeDao = new LocaleCachedDaoImpl(DbConnectionPoolServiceImpl.getInstance());
