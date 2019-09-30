@@ -113,4 +113,13 @@
         <url-pattern>/question</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>testResult</servlet-name>
+        <jsp-file>/testResult.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>testResult</servlet-name>
+        <url-pattern>/testResult</url-pattern>
+    </servlet-mapping>
+
 </web-app>

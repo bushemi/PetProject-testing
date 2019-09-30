@@ -3,8 +3,8 @@ package com.bushemi.web.servlets;
 import com.bushemi.dao.entity.PassedTest;
 import com.bushemi.model.OptionForSessionDto;
 import com.bushemi.model.QuestionForSessionDto;
-import com.bushemi.service.interfaces.PassedTestsService;
 import com.bushemi.service.implementations.PassedTestsServiceImpl;
+import com.bushemi.service.interfaces.PassedTestsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,8 +62,9 @@ public class QuestionServlet extends HttpServlet {
                 LocalDateTime startTime = (LocalDateTime) session.getAttribute("startTime");
                 long spentSeconds = ChronoUnit.SECONDS.between(startTime, LocalDateTime.now());
                 LOG.info("test completed by user with id = {}. Spent time {} for test {}", userId, spentSeconds, userId);
+                session.setAttribute("spentTime", spentSeconds);
                 passedTestsService.save(new PassedTest(null, testId, userId, countRightAnswers, (int) spentSeconds));
-                resp.sendRedirect("/tests");
+                resp.sendRedirect("/testResult");
             }
         }
     }
