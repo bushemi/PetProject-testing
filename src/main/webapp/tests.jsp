@@ -102,10 +102,15 @@
 <table>
     <thead>
     <tr>
-        <th>Предмет</th>
-        <th>Название теста</th>
-        <th>Сложность</th>
-        <th>Минут на выполнение</th>
+        <th rowspan="2">Предмет</th>
+        <th rowspan="2">Название теста</th>
+        <th rowspan="2">Сложность</th>
+        <th rowspan="2">Минут на выполнение</th>
+        <th colspan="2">Информация о прошлых прохождениях</th>
+    </tr>
+    <tr>
+        <th>Правильных ответов</th>
+        <th>Секунд затрачено</th>
     </tr>
     </thead>
     <tbody>
@@ -116,6 +121,8 @@
                 <td>${item.testName}</td>
                 <td>${item.difficulty}</td>
                 <td>${item.minutesToComplete}</td>
+                <td>${item.correctAnswers}</td>
+                <td>${item.spentTime}</td>
             </tr>
         </c:forEach>
     </c:if>

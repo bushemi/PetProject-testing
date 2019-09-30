@@ -8,16 +8,22 @@ public class TestForTestsPage {
     private String testName;
     private Integer difficulty;
     private Double minutesToComplete;
+    private Integer correctAnswers;
+    private Integer spentTime;
 
     public TestForTestsPage() {
     }
 
-    public TestForTestsPage(Long id, String subject, String testName, Integer difficulty, Double minutesToComplete) {
+    public TestForTestsPage(Long id, String subject, String testName,
+                            Integer difficulty, Double minutesToComplete,
+                            Integer correctAnswers, Integer spentTime) {
         this.id = id;
         this.subject = subject;
         this.testName = testName;
         this.difficulty = difficulty;
         this.minutesToComplete = minutesToComplete;
+        this.correctAnswers = correctAnswers;
+        this.spentTime = spentTime;
     }
 
     public Long getId() {
@@ -60,6 +66,22 @@ public class TestForTestsPage {
         this.minutesToComplete = minutesToComplete;
     }
 
+    public Integer getCorrectAnswers() {
+        return correctAnswers;
+    }
+
+    public void setCorrectAnswers(Integer correctAnswers) {
+        this.correctAnswers = correctAnswers;
+    }
+
+    public Integer getSpentTime() {
+        return spentTime;
+    }
+
+    public void setSpentTime(Integer spentTime) {
+        this.spentTime = spentTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,12 +91,14 @@ public class TestForTestsPage {
                 Objects.equals(getSubject(), that.getSubject()) &&
                 Objects.equals(getTestName(), that.getTestName()) &&
                 Objects.equals(getDifficulty(), that.getDifficulty()) &&
-                Objects.equals(getMinutesToComplete(), that.getMinutesToComplete());
+                Objects.equals(getMinutesToComplete(), that.getMinutesToComplete()) &&
+                Objects.equals(getCorrectAnswers(), that.getCorrectAnswers()) &&
+                Objects.equals(getSpentTime(), that.getSpentTime());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getSubject(), getTestName(), getDifficulty(), getMinutesToComplete());
+        return Objects.hash(getId(), getSubject(), getTestName(), getDifficulty(), getMinutesToComplete(), getCorrectAnswers(), getSpentTime());
     }
 
     @Override
@@ -85,6 +109,8 @@ public class TestForTestsPage {
                 ", testName='" + testName + '\'' +
                 ", difficulty=" + difficulty +
                 ", minutesToComplete=" + minutesToComplete +
+                ", correctAnswers=" + correctAnswers +
+                ", spentTime=" + spentTime +
                 '}';
     }
 }

@@ -59,6 +59,9 @@ public class QuestionServlet extends HttpServlet {
                 int countRightAnswers = (int) session.getAttribute(COUNT_RIGHT_ANSWERS);
                 long testId = (long) session.getAttribute("testId");
                 long userId = (long) session.getAttribute("userId");
+                session.setAttribute("question", null);
+                session.setAttribute("currentQuestion", null);
+                session.setAttribute("questions", null);
                 LocalDateTime startTime = (LocalDateTime) session.getAttribute("startTime");
                 long spentSeconds = ChronoUnit.SECONDS.between(startTime, LocalDateTime.now());
                 LOG.info("test completed by user with id = {}. Spent time {} for test {}", userId, spentSeconds, userId);
@@ -80,14 +83,9 @@ public class QuestionServlet extends HttpServlet {
         QuestionForSessionDto question = (QuestionForSessionDto) session.getAttribute("question");
         List<OptionForSessionDto> options = question.getOptions();
         int countRightAnswers = (int) session.getAttribute(COUNT_RIGHT_ANSWERS);
-        for (int i = 0; i < options.size(); i++) {
-            OptionForSessionDto option = options.get(i);
-            if (indexesOfAnswers.contains(option.getId().intValue())) {
-                if (option.isCorrect()) {
-                    countRightAnswers++;
-                } else {
-                    countRightAnswers--;
-                }
+        for (OptionForSessionDto option : options) {
+            if (indexesOfAnswers.contains(option.getId().intValue()) && option.isCorrect()) {
+                countRightAnswers++;
             }
         }
         session.setAttribute(COUNT_RIGHT_ANSWERS, countRightAnswers);
