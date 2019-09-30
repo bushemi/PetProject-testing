@@ -11,6 +11,14 @@
         <filter-name>loginFilter</filter-name>
         <url-pattern>*</url-pattern>
     </filter-mapping>
+    <filter>
+        <filter-name>addTestFilter</filter-name>
+        <filter-class>com.bushemi.web.filters.AddTestFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>addTestFilter</filter-name>
+        <url-pattern>/addTest</url-pattern>
+    </filter-mapping>
 
 
     <servlet>
@@ -120,6 +128,51 @@
     <servlet-mapping>
         <servlet-name>testResult</servlet-name>
         <url-pattern>/testResult</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addTest</servlet-name>
+        <jsp-file>/addTest.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addTest</servlet-name>
+        <url-pattern>/addTest</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>editTest</servlet-name>
+        <jsp-file>/editTest.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>editTest</servlet-name>
+        <url-pattern>/editTest</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addQuestion</servlet-name>
+        <jsp-file>/question.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addQuestion</servlet-name>
+        <url-pattern>/addQuestion</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>userProfile</servlet-name>
+        <jsp-file>/userProfile.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userProfile</servlet-name>
+        <url-pattern>/userProfile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>users</servlet-name>
+        <jsp-file>/allUsers.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>users</servlet-name>
+        <url-pattern>/allUsers</url-pattern>
     </servlet-mapping>
 
 </web-app>
