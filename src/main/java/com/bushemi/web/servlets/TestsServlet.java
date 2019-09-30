@@ -1,5 +1,7 @@
 package com.bushemi.web.servlets;
 
+import com.bushemi.converters.TestParser;
+import com.bushemi.dao.entity.Test;
 import com.bushemi.model.PassedTestForSessionDto;
 import com.bushemi.model.TestForTestsPage;
 import com.bushemi.service.implementations.PassedTestsServiceImpl;
@@ -22,6 +24,7 @@ public class TestsServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger("TestsServlet");
     private final TestService testService = new TestServiceImpl();
     private final PassedTestsService passedTestsService = new PassedTestsServiceImpl();
+    private final TestParser testParser = new TestParser();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -43,4 +46,13 @@ public class TestsServlet extends HttpServlet {
                 .forEach(test -> test.setSpentTime(allByUserId.get(test.getId()).getSpentTime()));
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+        HttpSession session = req.getSession();
+        String requestBody = (String) session.getAttribute("requestBody");
+        Test test = testParser.fromString(requestBody);
+        Long savedId = testService.save(test);
+        resp.setStatus(HttpServletResponse.SC_OK);
+        session.setAttribute("editTestId", savedId);
+    }
 }

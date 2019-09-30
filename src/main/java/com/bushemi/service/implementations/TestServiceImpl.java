@@ -55,4 +55,9 @@ public class TestServiceImpl implements TestService {
         }
 
     }
+
+    @Override
+    public Long save(Test test) {
+        return testDao.save(test);
+    }
 }

@@ -82,6 +82,10 @@
       function startTest() {
         window.location.href = "/testToGo/" + selectedTest;
       }
+      
+      function addTest() {
+        window.location.href = "/addTest";
+      }
     
     </script>
 </head>
@@ -94,7 +98,7 @@
         <c:if test="${sessionScope.role == 'admin'}">
             <button id="deleteTestButton" disabled>Удалить тест</button>
             <button id="editTestButton" disabled>Редактировать тест</button>
-            <button id="newTestButton">Добавить новый тест</button>
+            <button id="newTestButton" onclick="addTest()">Добавить новый тест</button>
         </c:if>
     </c:if>
 </div>
