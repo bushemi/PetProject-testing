@@ -7,7 +7,7 @@
     <changeSet id="loadSubjects" author="bushemi2001@gmail.com">
         <loadData
                 encoding="UTF-8"
-                file="src/main/resources/db/subjects.csv"
+                file="src/main/resources/db/dataset/subjects.csv"
                 quotchar="A String"
                 separator=";"
                 tableName="subjects">

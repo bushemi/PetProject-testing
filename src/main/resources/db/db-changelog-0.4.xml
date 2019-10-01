@@ -7,7 +7,7 @@
     <changeSet id="loadTests" author="bushemi2001@gmail.com">
         <loadData
                 encoding="UTF-8"
-                file="src/main/resources/db/tests.csv"
+                file="src/main/resources/db/dataset/tests.csv"
                 quotchar="A String"
                 separator=";"
                 tableName="tests">
@@ -16,7 +16,7 @@
     <changeSet id="loadQuestions" author="bushemi2001@gmail.com">
         <loadData
                 encoding="UTF-8"
-                file="src/main/resources/db/questions.csv"
+                file="src/main/resources/db/dataset/questions.csv"
                 quotchar="A String"
                 separator=";"
                 tableName="questions">
@@ -25,7 +25,7 @@
     <changeSet id="loadOptions" author="bushemi2001@gmail.com">
         <loadData
                 encoding="UTF-8"
-                file="src/main/resources/db/options.csv"
+                file="src/main/resources/db/dataset/options.csv"
                 quotchar="A String"
                 separator=";"
                 tableName="options">

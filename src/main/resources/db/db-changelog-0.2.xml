@@ -7,7 +7,7 @@
     <changeSet id="loadDictionary-roles" author="db@user">
         <loadData
                 encoding="UTF-8"
-                file="src/main/resources/db/roles.csv"
+                file="src/main/resources/db/dataset/roles.csv"
                 quotchar="A String"
                 separator=","
                 tableName="roles">
@@ -17,7 +17,7 @@
     <changeSet id="loadDictionary-locales" author="db@user">
         <loadData
                 encoding="UTF-8"
-                file="src/main/resources/db/locales.csv"
+                file="src/main/resources/db/dataset/locales.csv"
                 quotchar="A String"
                 separator=","
                 tableName="locales">
@@ -27,7 +27,7 @@
     <changeSet id="addAdmin-users" author="db@user">
         <loadData
                 encoding="UTF-8"
-                file="src/main/resources/db/user-admin.csv"
+                file="src/main/resources/db/dataset/user-admin.csv"
                 quotchar="A String"
                 separator=","
                 tableName="users">
