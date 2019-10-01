@@ -4,6 +4,14 @@
     http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0" metadata-complete="false">
 
     <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>com.bushemi.web.filters.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+    <filter>
         <filter-name>loginFilter</filter-name>
         <filter-class>com.bushemi.web.filters.LoginFilter</filter-class>
     </filter>
@@ -73,7 +81,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>indexPage</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/start</url-pattern>
+        <url-pattern>/index</url-pattern>
     </servlet-mapping>
 
     <servlet>
