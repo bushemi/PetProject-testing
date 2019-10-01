@@ -175,4 +175,13 @@
         <url-pattern>/allUsers</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>404</servlet-name>
+        <jsp-file>/404.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>404</servlet-name>
+        <url-pattern>/404</url-pattern>
+    </servlet-mapping>
+
 </web-app>
