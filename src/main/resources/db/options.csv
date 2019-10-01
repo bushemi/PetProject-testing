@@ -1,0 +1,31 @@
+id;main_text;question_id;is_correct
+1;a;1;true
+2;to;1;false
+3;you;1;false
+4;груша;2;false
+5;арбуз;2;false
+6;яблоко;2;true
+7;бутерброд с колбасой;2;false
+8;Одесса;3;false
+9;Лос-Анжелес;3;false
+10;Лондон;3;true
+11;Оживление мертвых людей;4;false
+12;Наука про чёрные дыры;4;false
+13;Поднятие из мертвых черных людей;4;true
+14;0;5;false
+15;2;5;false
+16;3;5;true
+17;4;5;false
+18;public;6;true
+19;private;6;false
+20;final;6;false
+21;goto;6;false
+22;Collections.swap;7;true
+23;List.swap;7;false
+24;List.change;7;false
+25;0;8;false
+26;2;8;true
+27;3;8;false
+28;int;9;false
+29;String;9;true
+30;List;9;false

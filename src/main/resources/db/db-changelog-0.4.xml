@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="loadTests" author="bushemi2001@gmail.com">
+        <loadData
+                encoding="UTF-8"
+                file="src/main/resources/db/tests.csv"
+                quotchar="A String"
+                separator=";"
+                tableName="tests">
+        </loadData>
+    </changeSet>
+    <changeSet id="loadQuestions" author="bushemi2001@gmail.com">
+        <loadData
+                encoding="UTF-8"
+                file="src/main/resources/db/questions.csv"
+                quotchar="A String"
+                separator=";"
+                tableName="questions">
+        </loadData>
+    </changeSet>
+    <changeSet id="loadOptions" author="bushemi2001@gmail.com">
+        <loadData
+                encoding="UTF-8"
+                file="src/main/resources/db/options.csv"
+                quotchar="A String"
+                separator=";"
+                tableName="options">
+            <column name="is_correct" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>
