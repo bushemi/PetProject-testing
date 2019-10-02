@@ -1,12 +1,15 @@
 package com.bushemi.service.implementations;
 
 import com.bushemi.service.interfaces.UrlSecurityService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 import static java.util.Objects.isNull;
 
 public class UrlSecurityServiceImpl implements UrlSecurityService {
+    private static final Logger LOG = LoggerFactory.getLogger("UrlSecurityServiceImpl");
     private static final String GET = "get";
     private static final String POST = "post";
     private static final String PUT = "put";
@@ -23,32 +26,35 @@ public class UrlSecurityServiceImpl implements UrlSecurityService {
 
     private void initFreeLinksToAnyone() {
         List<String> emptyList = Collections.emptyList();
-        freeLinksToAnyone.put(GET, Arrays.asList("/404", "/index", "/start", "/login", "/authentication"));
-        freeLinksToAnyone.put(POST, Arrays.asList("/users"));
+        freeLinksToAnyone.put(GET, Arrays.asList("/404", "/login", "/authentication"));
+        freeLinksToAnyone.put(POST, Collections.singletonList("/users"));
         freeLinksToAnyone.put(PUT, emptyList);
         freeLinksToAnyone.put(DELETE, emptyList);
     }
 
     private void initFreeLinksToStudent() {
         List<String> emptyList = Collections.emptyList();
-        freeLinksToStudent.put(GET, Arrays.asList("/404", "/index", "/start", "/login", "/authentication", "/userProfile"
-                , "/testResult", "/question", "/testing", "/allTests", "/navigation"));
-        freeLinksToStudent.put(POST, Arrays.asList("/users"));
+        freeLinksToStudent.put(GET, Arrays.asList("/404", "/login", "/authentication", "/userProfile"
+                , "/testResult", "/question", "/testing", "/tests", "/allTests", "/testToGo", "/navigation"));
+        freeLinksToStudent.put(POST, Arrays.asList("/users", "/questions"));
         freeLinksToStudent.put(PUT, emptyList);
         freeLinksToStudent.put(DELETE, emptyList);
     }
 
     private void initFreeLinksToAdmin() {
         List<String> emptyList = Collections.emptyList();
-        freeLinksToAdmin.put(GET, Arrays.asList("/404", "/index", "/start", "/login", "/authentication", "/userProfile"
-                , "/testResult", "/question", "/testing", "/allTests", "/navigation", "/allUsers", "/addTest", "/editTest", "/addQuestion"));
-        freeLinksToAdmin.put(POST, Arrays.asList("/users"));
+        freeLinksToAdmin.put(GET, Arrays.asList("/404", "/login", "/authentication", "/userProfile"
+                , "/testResult", "/question", "/testing", "/tests", "/allTests", "/testToGo", "/navigation",
+                "/allUsers", "/addTest", "/editTest", "/addQuestion"));
+        freeLinksToAdmin.put(POST, Arrays.asList("/users", "/questions"));
         freeLinksToAdmin.put(PUT, emptyList);
         freeLinksToAdmin.put(DELETE, emptyList);
     }
 
     @Override
     public boolean doesRoleHasAccessToUrl(String roleName, String url, String method) {
+        LOG.info("user with role - {}, tries to go to uri - {}, with method - {}", roleName, url, method);
+        if (url.equals("/")) return true;
         if (isNull(roleName)) {
             return validateUrl(freeLinksToAnyone, url, method);
         }

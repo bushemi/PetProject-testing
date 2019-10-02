@@ -22,9 +22,9 @@ public class LoginFilter implements Filter {
         if (!textFromRequest.isEmpty()) {
             session.setAttribute("requestBody", textFromRequest);
         }
-        String url = httpRequest.getRequestURL().toString();
-        LOG.info("url = {}. Session id = {}", url, session.getId());
-        if (url.endsWith("users") && !textFromRequest.contains("isNewUser=true")) {
+        String uri = httpRequest.getRequestURI();
+        LOG.info("uri = {}. Session id = {}", uri, session.getId());
+        if (uri.endsWith("users") && !textFromRequest.contains("isNewUser=true")) {
             httpResponse.sendRedirect("/authentication");
             return;
         }
